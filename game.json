@@ -1,0 +1,22 @@
+{
+  "title": "",
+  "description": "",
+  "author": "",
+  "startLocationId": "",
+  "max_itens": "",
+  "attack": 10,
+  "defense": 8,
+  "life": 22,
+  "locations": [
+    {
+      "id": "",
+      "name": "",
+      "description": "",
+      "exits": [],
+      "items": [],
+      "npcs": [],
+      "puzzles": [],
+      "enemies": []
+    }
+  ]
+}
