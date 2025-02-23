@@ -1,22 +1,84 @@
 {
-  "title": "bom dia",
+  "title": "Joguinho",
   "description": "",
   "author": "",
   "startLocationId": "1",
-  "maxItems": "",
+  "max_itens": "",
+  "max_turns_easy": "",
+  "max_turns_normal": "",
+  "max_turns_hard": "",
   "attack": 10,
   "defense": 8,
   "life": 22,
   "locations": [
     {
-      "id": "1",
-      "name": "Sala Inicial",
-      "description": "Esta sala feita de blocos de pedra e iluminada por tochas possui uma atmosfera calma",
-      "exits": ["porta esquerda","porta direita"],
-      "items": [],
-      "npcs": [],
-      "puzzles": [],
-      "enemies": []
+      "id": "",
+      "name": "",
+      "description": "",
+      "exits": [
+        {
+          "direction": "",
+          "targetLocationId": "",
+          "description": "",
+          "inactive": true
+        }
+      ],
+      "items": [
+        {
+          "id": "",
+          "name": "",
+          "description": "",
+          "can_take": false,
+          "inactive": false
+        }
+      ],
+      "npcs": [
+        {
+          "id": "",
+          "name": "",
+          "description": "",
+          "inactive": true,
+          "dialogues": [
+            {
+              "text": "",
+              "responses": [
+                {
+                  "result": {
+                    "active": [],
+                    "lose_item": []
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "puzzles": [
+        {
+          "id": "",
+          "description": "",
+          "solution": {
+            "requiredItems": [],
+            "actions": ""
+          },
+          "result": {
+            "active": [],
+            "lose_item": [],
+            "lose_life": 12
+          }
+        }
+      ],
+      "enemies": [
+        {
+          "attack": 12,
+          "defense": 7,
+          "result": {
+            "active": [],
+            "lose_item": [],
+            "lose_life": 12
+          }
+        }
+      ]
     }
   ]
 }
