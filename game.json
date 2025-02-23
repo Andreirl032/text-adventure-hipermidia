@@ -1,84 +1,112 @@
 {
   "title": "Joguinho",
-  "description": "",
-  "author": "",
+  "description": "Uma aventura épica em um mundo misterioso.",
+  "author": "Autor Desconhecido",
   "startLocationId": "1",
-  "max_itens": "",
-  "max_turns_easy": "",
-  "max_turns_normal": "",
-  "max_turns_hard": "",
+  "max_itens": "5",
+  "max_turns_easy": "30",
+  "max_turns_normal": "20",
+  "max_turns_hard": "10",
   "attack": 10,
   "defense": 8,
   "life": 22,
   "locations": [
     {
-      "id": "",
-      "name": "",
-      "description": "",
+      "id": "1",
+      "name": "Entrada da Caverna",
+      "description": "Você está na entrada de uma caverna escura. Há um caminho para o norte.",
       "exits": [
         {
-          "direction": "",
-          "targetLocationId": "",
-          "description": "",
-          "inactive": true
+          "direction": "norte",
+          "targetLocationId": "2",
+          "description": "Um túnel estreito que leva ao interior da caverna.",
+          "inactive": false
         }
       ],
       "items": [
         {
-          "id": "",
-          "name": "",
-          "description": "",
-          "can_take": false,
+          "id": "1",
+          "name": "Tocha",
+          "description": "Uma tocha velha, mas ainda funcional.",
+          "can_take": true,
           "inactive": false
         }
       ],
-      "npcs": [
+      "npcs": [],
+      "puzzles": [],
+      "enemies": []
+    },
+    {
+      "id": "2",
+      "name": "Salão da Caverna",
+      "description": "Um grande salão subterrâneo, com saídas para leste e sul.",
+      "exits": [
         {
-          "id": "",
-          "name": "",
-          "description": "",
-          "inactive": true,
-          "dialogues": [
-            {
-              "text": "",
-              "responses": [
-                {
-                  "result": {
-                    "active": [],
-                    "lose_item": []
-                  }
-                }
-              ]
-            }
-          ]
+          "direction": "leste",
+          "targetLocationId": "3",
+          "description": "Uma passagem escura para o leste.",
+          "inactive": false
+        },
+        {
+          "direction": "sul",
+          "targetLocationId": "1",
+          "description": "Retorno para a entrada da caverna.",
+          "inactive": false
         }
       ],
+      "items": [],
+      "npcs": [],
+      "puzzles": [],
+      "enemies": [
+        {
+          "attack": 5,
+          "defense": 3,
+          "result": {
+            "active": [],
+            "lose_item": [],
+            "lose_life": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Câmara do Tesouro",
+      "description": "Uma câmara secreta com um baú misterioso.",
+      "exits": [
+        {
+          "direction": "oeste",
+          "targetLocationId": "2",
+          "description": "Retorno para o salão da caverna.",
+          "inactive": false
+        }
+      ],
+      "items": [
+        {
+          "id": "2",
+          "name": "Espada Enferrujada",
+          "description": "Uma espada antiga, mas ainda útil.",
+          "can_take": true,
+          "inactive": false
+        }
+      ],
+      "npcs": [],
       "puzzles": [
         {
-          "id": "",
-          "description": "",
+          "id": "1",
+          "description": "Um enigma está gravado no baú.",
           "solution": {
-            "requiredItems": [],
-            "actions": ""
+            "requiredItems": ["1"],
+            "actions": "Usar a tocha para iluminar a inscrição."
           },
           "result": {
             "active": [],
             "lose_item": [],
-            "lose_life": 12
+            "lose_life": 0
           }
         }
       ],
-      "enemies": [
-        {
-          "attack": 12,
-          "defense": 7,
-          "result": {
-            "active": [],
-            "lose_item": [],
-            "lose_life": 12
-          }
-        }
-      ]
+      "enemies": []
     }
   ]
 }
