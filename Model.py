@@ -13,4 +13,3 @@ class Model:
         self.defense=data["defense"]
         self.life=data["life"]
         self.locations=data["locations"]
-        print(self.title)

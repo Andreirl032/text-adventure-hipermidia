@@ -3,10 +3,7 @@
   "description": "",
   "author": "",
   "startLocationId": "1",
-  "max_itens": "",
-  "max_turns_easy": "",
-  "max_turns_normal": "",
-  "max_turns_hard": "",
+  "maxItems": "",
   "attack": 10,
   "defense": 8,
   "life": 22,
@@ -70,6 +67,7 @@
       ],
       "enemies": [
         {
+          "name":"Klarg o Bugurso",
           "attack": 12,
           "defense": 7,
           "result": {
