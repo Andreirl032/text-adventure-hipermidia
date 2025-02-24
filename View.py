@@ -1,12 +1,16 @@
 import Model
-import winsound
+import platform
+
+if(platform.system()=="Windows"):
+    import winsound
 
 class View:
     def __init__(self):
         pass
 
     def gameLoop(controller,gameInfo):
-        winsound.PlaySound(r'./exploration.wav', winsound.SND_LOOP + winsound.SND_ASYNC)
+        if(platform.system()=="Windows"):
+            winsound.PlaySound(r'./exploration.wav', winsound.SND_LOOP + winsound.SND_ASYNC)
         while(controller.player.life>0):
             infoCurrLocation=controller.findCurrLocation(gameInfo)
             print("--------------------"+infoCurrLocation["name"]+"--------------------")
