@@ -1,20 +1,20 @@
 {
   "title": "Joguinho",
-  "description": "",
-  "author": "",
+  "description": "Meu joguinho",
+  "author": "Andrei Ramos Lopes e Marcelo Antônio Carvalho Florentino",
   "startLocationId": "1",
-  "maxItems": "",
+  "maxItems": 5,
   "attack": 10,
   "defense": 8,
   "life": 22,
   "locations": [
     {
-      "id": "",
-      "name": "",
-      "description": "",
+      "id": "1",
+      "name": "Sala inicial",
+      "description": "Esta sala é feita de blocos de pedra e possui algumas tochas nas paredes",
       "exits": [
         {
-          "direction": "",
+          "direction": "frente",
           "targetLocationId": "",
           "description": "",
           "inactive": true

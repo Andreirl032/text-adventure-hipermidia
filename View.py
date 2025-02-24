@@ -5,25 +5,26 @@ class View:
     def __init__(self):
         pass
 
-    def gameLoop(currSpace,currPlayer,commands):
+    def gameLoop(controller,gameInfo):
         winsound.PlaySound(r'./exploration.wav', winsound.SND_LOOP + winsound.SND_ASYNC)
-        b=0
-        while(currPlayer.life>0 and b<1):
-            a=input("oie\n")
-            b+=1
-            pass
-        print("oi")
-        pass
+        while(controller.player.life>0):
+            infoCurrLocation=controller.findCurrLocation(gameInfo)
+            print("--------------------"+infoCurrLocation["name"]+"--------------------")
+            print(infoCurrLocation["description"])
+            command="input"
+            if(command in controller.commands):
+                controller.processCommand(command,gameInfo)
 
-    def beginGame(self,title,author,desc,currSpace,currPlayer,commands):
-        print("--------------------"+title+"--------------------")
-        print("Feito por "+author)
-        print(desc+"\n")
+    def beginGame(self,controller,gameInfo):
+        print("--------------------"+gameInfo.title+"--------------------")
+        print("Feito por "+gameInfo.author)
+        print(gameInfo.description+"\n")
         while(True):
             enter=int(input("ESCOLHA A DIFICULDADE:\n1-FÁCIL\n2-NORMAL\n3-DIFÍCIL\n"))
             dificuldade=["fácil","normal","difícil"]
             if(enter>0 and enter<4):
-                View.gameLoop(currSpace,currPlayer,commands)
-                return dificuldade[enter-1]
+                controller.difficulty=dificuldade[enter-1]
+                View.gameLoop(controller,gameInfo)
+                return
             else:
                 print("INSIRA UM NÚMERO VÁLIDO")
