@@ -40,6 +40,26 @@
       "up_attack": 0,
       "up_defense": 0,
       "up_life": 0
+    },
+    {
+      "id": "4",
+      "name": "Pepsi Twist",
+      "description": "Uma estranha bebida que parece cítrica, gasosa, e revigorante. Está sempre gelada por algum motivo",
+      "can_take": true,
+      "inactive": false,
+      "up_attack": 0,
+      "up_defense": 0,
+      "up_life": 5
+    },
+    {
+      "id": "5",
+      "name": "Gladius Veritas",
+      "description": "Uma espada escrito 'Gladius Veritas' nela. Aparentemente possui uma maldição",
+      "can_take": true,
+      "inactive": false,
+      "up_attack": 15,
+      "up_defense": 0,
+      "up_life": -10
     }
   ],
   "locations": [
@@ -110,7 +130,9 @@
                 {
                   "key_text": "Você demonstrou sabedoria, viajante. A montanha ensina paciência, mas o vento carrega consigo a liberdade e o conhecimento. Como recompensa, receba esta Bússola de Ouro",
                   "text_error": "Sua escolha reflete sua mente, mas não é a resposta que eu buscava. Siga em frente, mas lembre-se: a sabedoria muitas vezes está no equilíbrio.",
-                  "active": ["Bússola de Ouro"],
+                  "active": [
+                    "Bússola de Ouro"
+                  ],
                   "lose_item": []
                 }
               ]
@@ -151,7 +173,9 @@
           "id": "1",
           "description": "Um enigma está gravado no baú.",
           "solution": {
-            "requiredItems": ["1"],
+            "requiredItems": [
+              "1"
+            ],
             "actions": "Usar a tocha para iluminar a inscrição."
           },
           "result": {
@@ -173,6 +197,12 @@
           "targetLocationId": "2",
           "description": "Retorno para a Encruzilhada da Caverna.",
           "inactive": false
+        },
+        {
+          "direction": "norte",
+          "targetLocationId": "5",
+          "description": "Próxima sala",
+          "inactive": false
         }
       ],
       "items": [],
@@ -190,6 +220,80 @@
           }
         }
       ]
+    },
+    {
+      "id": "6",
+      "name": "Bar da quarta parede",
+      "description": "Um bar enigmático vazio com um único barman atrás da bancada",
+      "exits": [
+        {
+          "direction": "leste",
+          "targetLocationId": "5",
+          "description": "Retornar",
+          "inactive": false
+        }
+      ],
+      "items": [],
+      "npcs": [
+        {
+          "id": 2,
+          "name": "Andrei",
+          "description": "Um jovem de cabelo preto e óculos, com roupas que você nunca viu em toda a sua vida em pleno século IX",
+          "inactive": false,
+          "dialogues": [
+            {
+              "text": "Oie, eu sou tipo um easter egg nesse jogo, você não precisa se preocupar comigo. Mas e aí, vai querer o que?\n1 - Quem é você?? Qual o sentido disso tudo?? Você é algum tipo de criatura onipotente?? Qual o sentido de minha existência?\n2 - Uma bem geladinha",
+              "key": 2,
+              "result": [
+                {
+                  "key_text": "Beleza fera, toma isso aqui, garanto que vai continuar gelada. O Emanuel é super fã disso, mas você não vai entender a referência. Boa sorte na jornada!",
+                  "text_error": "Faz o L mano",
+                  "active": [
+                    "Pepsi Twist"
+                  ],
+                  "lose_item": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "puzzles": [],
+      "enemies": []
+    },
+    {
+      "id": "7",
+      "name": "Sala do preparo",
+      "description": "Um recinto com uma porta ao norte que possui uma sinistra aura emanando de trás dela. É agora ou nunca.",
+      "exits": [
+        {
+          "direction": "oeste",
+          "targetLocationId": "5",
+          "description": "Retornar",
+          "inactive": false
+        },
+        {
+          "direction": "norte",
+          "targetLocationId": "8",
+          "description": "???",
+          "inactive": false
+        }
+      ],
+      "items": [
+        {
+          "id": "5",
+          "name": "Gladius Veritas",
+          "description": "Uma espada escrito 'Gladius Veritas' nela. Aparentemente possui uma maldição",
+          "can_take": true,
+          "inactive": false,
+          "up_attack": 15,
+          "up_defense": 0,
+          "up_life": -10
+        }
+      ],
+      "npcs": [],
+      "puzzles": [],
+      "enemies": []
     }
   ]
 }
