@@ -10,6 +10,22 @@
   "attack": 10,
   "defense": 8,
   "life": 22,
+  "usable_items": [
+    {
+      "id": "1",
+      "name": "Tocha",
+      "description": "Uma tocha velha, mas ainda funcional.",
+      "can_take": true,
+      "inactive": false
+    },
+    {
+      "id": "2",
+      "name": "Espada Enferrujada",
+      "description": "Uma espada antiga, mas ainda útil.",
+      "can_take": true,
+      "inactive": false
+    }
+  ],
   "locations": [
     {
       "id": "1",
