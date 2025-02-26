@@ -16,14 +16,30 @@
       "name": "Tocha",
       "description": "Uma tocha velha, mas ainda funcional.",
       "can_take": true,
-      "inactive": false
+      "inactive": false,
+      "up_attack": 0,
+      "up_defense": 5,
+      "up_life": 0
     },
     {
       "id": "2",
       "name": "Espada Enferrujada",
       "description": "Uma espada antiga, mas ainda útil.",
       "can_take": true,
-      "inactive": false
+      "inactive": false,
+      "up_attack": 10,
+      "up_defense": 5,
+      "up_life": 0
+    },
+    {
+      "id": "3",
+      "name": "Bússola de Ouro",
+      "description": "Não é de ouro, mas funciona como bússola",
+      "can_take": true,
+      "inactive": false,
+      "up_attack": 0,
+      "up_defense": 0,
+      "up_life": 0
     }
   ],
   "locations": [
@@ -45,7 +61,10 @@
           "name": "Tocha",
           "description": "Uma tocha velha, mas ainda funcional.",
           "can_take": true,
-          "inactive": false
+          "inactive": false,
+          "up_attack": 0,
+          "up_defense": 5,
+          "up_life": 0
         }
       ],
       "npcs": [],
@@ -81,8 +100,22 @@
         {
           "id": 1,
           "name": "Guardião da Encruzilhada",
-          "description": "",
-          "dialogues": ""
+          "description": "Espírito de alguém que tentou entrar na caverna. Mas não teve um destino tão bom",
+          "inactive": false,
+          "dialogues": [
+            {
+              "text": "Viajante, você está diante de uma escolha que determinará seu destino. Responda com sabedoria, e poderá ganhar uma recompensa valiosa. Escolha uma das opções abaixo:\n 1 - O que é mais forte: o fogo que queima ou a água que molda?\n 2 -O que é mais sábio: a montanha que permanece ou o vento que viaja?\n 3 - O que é mais precioso: o ouro que brilha ou a palavra que promete?",
+              "key": 2,
+              "result": [
+                {
+                  "key_text": "Você demonstrou sabedoria, viajante. A montanha ensina paciência, mas o vento carrega consigo a liberdade e o conhecimento. Como recompensa, receba esta Bússola de Ouro",
+                  "text_error": "Sua escolha reflete sua mente, mas não é a resposta que eu buscava. Siga em frente, mas lembre-se: a sabedoria muitas vezes está no equilíbrio.",
+                  "active": ["Bússola de Ouro"],
+                  "lose_item": []
+                }
+              ]
+            }
+          ]
         }
       ],
       "puzzles": [],
@@ -106,7 +139,10 @@
           "name": "Espada Enferrujada",
           "description": "Uma espada antiga, mas ainda útil.",
           "can_take": true,
-          "inactive": false
+          "inactive": false,
+          "up_attack": 10,
+          "up_defense": 5,
+          "up_life": 0
         }
       ],
       "npcs": [],

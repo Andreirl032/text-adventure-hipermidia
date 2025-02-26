@@ -15,8 +15,10 @@ player = {
     "inventory": []
 }
 
-print(player)
-
+def get_name_usableItems(id):
+    for item in player["usable_items"]:
+        if id == item["id"]:
+            return item["name"]
 # Função para obter a localização atual
 def get_current_location():
     return next((loc for loc in game_data["locations"] if loc["id"] == player["location"]), None)
@@ -62,10 +64,36 @@ def collect_item(item_name):
             player["inventory"].append(item["id"])
             location["items"].remove(item)
             print(f"Você coletou: {item['name']}")
+
+            print(f"Você recebeu um aprimoramento de defesa = {item["up_defense"]} - ataque = {item["up_attack"]} - vida = {item["up_life"]}")
+
+            player["attack"] += item["up_attack"]
+            player["defense"] += item["up_defense"]
+            player["life"] += item["up_life"]
+
+            item["can_take"] = False
+
         else:
             print("Seu inventário está cheio!")
     else:
-        print("Esse item não pode ser coletado ou não está aqui.")
+        item = next((i for i in player["usable_items"] if i["name"].lower() == item_name.lower()), None)
+        if item and item["can_take"]:
+            if len(player["inventory"]) < int(game_data["max_itens"]):
+                player["inventory"].append(item["id"])
+                #player["usable_items"].remove(item)
+                print(f"Você coletou: {item['name']}")
+
+                print(f"Você recebeu um aprimoramento de defesa = {item["up_defense"]} - ataque = {item["up_attack"]} - vida = {item["up_life"]}")
+
+                player["attack"] += item["up_attack"]
+                player["defense"] += item["up_defense"]
+                player["life"] += item["up_life"]
+
+                item["can_take"] = False
+            else:
+                print("Seu inventário está cheio!")
+        else:
+            print("Esse item não pode ser coletado ou não está aqui.")
 
 # Função para exibir a localização atual
 def show_location():
@@ -95,6 +123,11 @@ def show_location():
             print("\nPuzzles disponíveis:")
             for puzzle in location["puzzles"]:
                 print(f"- {puzzle['description']} (use 'resolver {puzzle['id']}' para interagir)")
+        
+        if location["npcs"]:
+            print("\n Npcs Disponíveis:")
+            for npc in location["npcs"]:
+                print(f"- {npc["name"]} (use 'falar {npc["name"]}' para interagir) ")
 
 # Função para movimentar o jogador
 def move(direction):
@@ -112,7 +145,7 @@ def combat():
         print("Não há inimigos aqui.")
         return
     
-    enemy = location["enemies"][0]  # Assume-se que haja apenas um inimigo por vez
+    enemy = location["enemies"][0]
     print(f"\nVocê entrou em combate contra um inimigo! (Nome: {enemy['name']}, ATK: {enemy['attack']}, DEF: {enemy['defense']})")
     
     if enemy["attack"] > player["defense"]:
@@ -129,14 +162,68 @@ def combat():
     if player["attack"] > enemy["defense"]:
         print("Você derrotou o inimigo!")
         location["enemies"].remove(enemy)
+        
+        result = enemy["result"]
+
+
     else:
         print(f"O inimigo resistiu ao seu ataque! (DEF: {enemy['defense']})")
 
+
+def talk_to_npc(npc_name):
+    location = get_current_location()
+    npc = None
+    for x in location["npcs"]:
+        if x["name"].lower() == npc_name.lower():
+            npc = x
+            break
+
+    if not npc:
+        print("Não existe ninguém com esse nome aqui")
+        return
+    
+    print(f"\n{npc["name"]}: {npc["description"]}")
+
+    for index, dialogue in enumerate(npc["dialogues"], 1):
+        print(f"\nDiálogo {index}: {dialogue["text"]}")
+
+        choice = int(input("\nEscolha um número para responder: ").strip())
+
+        if choice in [1, 2, 3]:
+            result = dialogue["result"]
+
+            if choice == dialogue["key"]:
+                print(f"\n{result[0]["key_text"]}")
+                collect_item(result[0]["active"][0])
+            else:
+               print(f"\n{result[0]["text_error"]}") 
+
+        else:
+            print("Escolha uma opção válida")
+              
+
+def show_player_stats():
+    location = get_current_location()
+    print("\n=== Status do Jogador ===")
+    print(f"📍 Localização: {location["name"]}")
+    print(f"⚔️  Ataque: {player['attack']}")
+    print(f"🛡️  Defesa: {player['defense']}")
+    print(f"❤️  Vida: {player['life']}")
+    print("\n🎒 Inventário:")
+    if player["inventory"]:
+        for item in player["inventory"]:
+            name = get_name_usableItems(item)
+            print(f" {item} - {name}")
+    else:
+        print("  (Vazio)")
+    print("=======================\n")
 # Loop principal do jogo
 def game_loop():
     print(f"\nBem-vindo ao {game_data['title']}!\n{game_data['description']}")
     
     while player["life"] > 0:
+        show_player_stats()
+        print()
         show_location()
         command = input("\nO que deseja fazer? ").strip().lower()
 
@@ -167,7 +254,12 @@ def game_loop():
             os.system('cls')
             item_name = command.split(" ", 1)[1]
             collect_item(item_name)
+        elif command.startswith("falar "):
+            os.system('cls')
+            npc_name = command.split(" ", 1)[1]
+            talk_to_npc(npc_name)
         else:
+            os.system('cls')
             print("Comando não reconhecido.")
 
 game_loop()
