@@ -1,4 +1,5 @@
 import json
+import os
 
 # Carregar os dados do jogo
 with open("game.json", "r", encoding="utf-8") as file:
@@ -52,6 +53,35 @@ def move(direction):
             return True
     return False
 
+# Função para iniciar combate
+def combat():
+    location = get_current_location()
+    if not location["enemies"]:
+        print("Não há inimigos aqui.")
+        return
+    
+    enemy = location["enemies"][0]  # Assume-se que haja apenas um inimigo por vez
+    print(f"\nVocê entrou em combate contra um inimigo! (ATK: {enemy['attack']}, DEF: {enemy['defense']})")
+    
+    # Movimento do inimigo
+    if enemy["attack"] > player["defense"]:
+        dano = enemy["attack"] - player["defense"]
+        player["life"] -= dano
+        print(f"O inimigo ataca! Você recebe {dano} de dano. Vida atual: {player['life']}")
+    else:
+        print("Você bloqueou o ataque do inimigo!")
+    
+    if player["life"] <= 0:
+        print("Você foi derrotado! Game Over.")
+        exit()
+    
+    # Movimento do jogador
+    if player["attack"] > enemy["defense"]:
+        print("Você derrotou o inimigo!")
+        location["enemies"].remove(enemy)
+    else:
+        print(f"O inimigo resistiu ao seu ataque! (DEF: {enemy['defense']})")
+
 # Loop principal do jogo
 def game_loop():
     print(f"\nBem-vindo ao {game_data['title']}!\n{game_data['description']}")
@@ -66,9 +96,13 @@ def game_loop():
         elif command.startswith("ir "):
             direction = command.split(" ", 1)[1]
             if move(direction):
+                os.system('cls')
                 print(f"Você se moveu para {direction}.")
             else:
                 print("Movimento inválido.")
+        elif command == "atacar":
+            os.system('cls')
+            combat()
         else:
             print("Comando não reconhecido.")
 
