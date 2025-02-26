@@ -75,7 +75,8 @@ def show_location():
         print(location["description"])
         
         if location["exits"]:
-            print("\nSaídas:")
+            print("\nSaída(s):")
+            print("Use 'ir direção' para se movimentar pelo mapa)")
             for exit in location["exits"]:
                 if not exit["inactive"]:
                     print(f"- {exit['direction']} -> {exit['targetLocationId']}")
@@ -83,7 +84,7 @@ def show_location():
         if location["enemies"]:
             print("\nInimigos:")
             for enemy in location["enemies"]:
-                print(f"- Ataque: {enemy['attack']}, Defesa: {enemy['defense']}")
+                print(f"-Nome: {enemy['name']} Ataque: {enemy['attack']}, Defesa: {enemy['defense']}")
 
         if location["items"]:
             print("\nItens disponíveis:")
@@ -112,7 +113,7 @@ def combat():
         return
     
     enemy = location["enemies"][0]  # Assume-se que haja apenas um inimigo por vez
-    print(f"\nVocê entrou em combate contra um inimigo! (ATK: {enemy['attack']}, DEF: {enemy['defense']})")
+    print(f"\nVocê entrou em combate contra um inimigo! (Nome: {enemy['name']}, ATK: {enemy['attack']}, DEF: {enemy['defense']})")
     
     if enemy["attack"] > player["defense"]:
         dano = enemy["attack"] - player["defense"]
@@ -163,6 +164,7 @@ def game_loop():
             else:
                 print("Esse enigma não existe aqui.")
         elif command.startswith("pegar "):
+            os.system('cls')
             item_name = command.split(" ", 1)[1]
             collect_item(item_name)
         else:

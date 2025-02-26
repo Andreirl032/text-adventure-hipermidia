@@ -1,7 +1,7 @@
 {
-  "title": "Joguinho",
+  "title": "Exploração na Caverna Mágica",
   "description": "Uma aventura épica em um mundo misterioso.",
-  "author": "Autor Desconhecido",
+  "author": "Andrei Ramos Lopes e Marcelo Antonio Carvalho Florentino",
   "startLocationId": "1",
   "max_itens": "5",
   "max_turns_easy": "30",
@@ -30,7 +30,7 @@
     {
       "id": "1",
       "name": "Entrada da Caverna",
-      "description": "Você está na entrada de uma caverna escura. Há um caminho para o norte.",
+      "description": "Você embarca em uma aventura para descobrir os segredos de uma caverna misteriosa que ninguém teve coragem de explorar. A população local diz que escutam gritos do interior da caverna. Você entra na caverna e vê apenas um caminho ao norte",
       "exits": [
         {
           "direction": "norte",
@@ -54,13 +54,19 @@
     },
     {
       "id": "2",
-      "name": "Salão da Caverna",
-      "description": "Um grande salão subterrâneo, com saídas para leste e sul.",
+      "name": "Encruzilhada da caverna",
+      "description": "Você precisa tomar a decisão de ir para o leste, oeste ou retornar para a Entrada da Caverna",
       "exits": [
         {
           "direction": "leste",
           "targetLocationId": "3",
           "description": "Uma passagem escura para o leste.",
+          "inactive": false
+        },
+        {
+          "direction": "oeste",
+          "targetLocationId": "4",
+          "description": "Uma passagem escura para o oeste.",
           "inactive": false
         },
         {
@@ -71,29 +77,26 @@
         }
       ],
       "items": [],
-      "npcs": [],
-      "puzzles": [],
-      "enemies": [
+      "npcs": [
         {
-          "attack": 5,
-          "defense": 3,
-          "result": {
-            "active": [],
-            "lose_item": [],
-            "lose_life": 5
-          }
+          "id": 1,
+          "name": "Guardião da Encruzilhada",
+          "description": "",
+          "dialogues": ""
         }
-      ]
+      ],
+      "puzzles": [],
+      "enemies": []
     },
     {
       "id": "3",
-      "name": "Câmara do Tesouro",
+      "name": "Câmara Abandonada",
       "description": "Uma câmara secreta com um baú misterioso.",
       "exits": [
         {
           "direction": "oeste",
           "targetLocationId": "2",
-          "description": "Retorno para o salão da caverna.",
+          "description": "Retorno para a Encruzilhada da Caverna.",
           "inactive": false
         }
       ],
@@ -123,6 +126,34 @@
         }
       ],
       "enemies": []
+    },
+    {
+      "id": "4",
+      "name": "Salão das caveiras",
+      "description": "Uma câmara secreta com um baú misterioso.",
+      "exits": [
+        {
+          "direction": "leste",
+          "targetLocationId": "2",
+          "description": "Retorno para a Encruzilhada da Caverna.",
+          "inactive": false
+        }
+      ],
+      "items": [],
+      "npcs": [],
+      "puzzles": [],
+      "enemies": [
+        {
+          "name": "Soldado medieval",
+          "attack": 5,
+          "defense": 3,
+          "result": {
+            "active": [],
+            "lose_item": [],
+            "lose_life": 5
+          }
+        }
+      ]
     }
   ]
 }
