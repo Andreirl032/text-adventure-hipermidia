@@ -294,6 +294,48 @@
       "npcs": [],
       "puzzles": [],
       "enemies": []
+    },
+    {
+      "id": "8",
+      "name": "Trono de Klarg",
+      "description": "A sua cova.",
+      "exits": [
+        {
+          "direction": "sul",
+          "targetLocationId": "7",
+          "description": "Retornar para a sala do preparo",
+          "inactive": true
+        },
+        {
+          "direction": "norte",
+          "targetLocationId": "9",
+          "description": "saída",
+          "inactive": false
+        }
+      ],
+      "items": [],
+      "npcs": [],
+      "puzzles": [],
+      "enemies": [{
+        "name": "Klarg, o Bugurso",
+        "attack": 12,
+        "defense": 10,
+        "result": {
+          "active": [],
+          "lose_item": [],
+          "lose_life": 8
+        }
+      }]
+    },
+    {
+      "id": "9",
+      "name": "O fim.",
+      "description": "...",
+      "exits": [],
+      "items": [],
+      "npcs": [],
+      "puzzles": [],
+      "enemies": []
     }
   ]
 }

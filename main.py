@@ -145,6 +145,9 @@ def show_location():
 
 def move(direction):
     location = get_current_location()
+    if location["id"]==8 and len(location["enemies"])>0:
+        print("Você precisa derrotar o chefão final!")
+        return False
     for exit in location["exits"]:
         if exit["direction"].lower() == direction.lower() and not exit["inactive"]:
             player["location"] = exit["targetLocationId"]
@@ -241,6 +244,11 @@ def game_loop():
         print()
         show_location()
         command = input("\nO que deseja fazer? ").strip().lower()
+
+        if get_current_location()["id"]==9:
+            print("PARABÉNS! VOCÊ CONCLUIU O JOGO!")
+            print("Feito por "+game_data["author"])
+            break
 
         if command in ["sair", "exit", "quit"]:
             print("Saindo do jogo...")
