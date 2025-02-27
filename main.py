@@ -24,6 +24,9 @@ def get_name_usableItems(id):
 def get_current_location():
     return next((loc for loc in game_data["locations"] if loc["id"] == player["location"]), None)
 
+def get_location(id):
+    return next((loc for loc in game_data["locations"] if loc["id"] == id), None)
+
 
 def apply_puzzle_result(puzzle, result):
     if result["lose_life"] > 0:
@@ -37,7 +40,7 @@ def apply_puzzle_result(puzzle, result):
             print(f"Você perdeu o item: {item}")
 
     for activation in result["active"]:
-        print(f"Algo mudou no mundo do jogo... ({activation})")
+        collect_item(activation)
 
     location = get_current_location()
     location["puzzles"].remove(puzzle)
@@ -121,6 +124,7 @@ def show_location():
 
         if location["enemies"]:
             print("\nInimigos:")
+            print("\nUse 'atacar' para interagir")
             for enemy in location["enemies"]:
                 print(
                     f"-Nome: {enemy['name']} Ataque: {enemy['attack']}, Defesa: {enemy['defense']}")
@@ -146,9 +150,6 @@ def show_location():
 
 def move(direction):
     location = get_current_location()
-    if location["id"]==8 and len(location["enemies"])>0:
-        print("Você precisa derrotar o chefão final!")
-        return False
     for exit in location["exits"]:
         if exit["direction"].lower() == direction.lower() and not exit["inactive"]:
             player["location"] = exit["targetLocationId"]
@@ -241,21 +242,26 @@ def game_loop():
     print(f"\nBem-vindo ao {game_data['title']}!\n{game_data['description']}")
 
     while player["life"] > 0:
+        if player["location"] == 9:
+            print("PARABÉNS! VOCÊ CONCLUIU O JOGO!")
+            print("Feito por "+game_data["author"])
+            break
         show_player_stats()
         print()
         show_location()
         command = input("\nO que deseja fazer? ").strip().lower()
-
-        if get_current_location()["id"]==9:
-            print("PARABÉNS! VOCÊ CONCLUIU O JOGO!")
-            print("Feito por "+game_data["author"])
-            break
+            
 
         if command in ["sair", "exit", "quit"]:
             print("Saindo do jogo...")
             break
         elif command.startswith("ir "):
+            location8 = get_location("8")
             direction = command.split(" ", 1)[1]
+            if player["location"] == "8" and len(location8["enemies"]) > 0 and direction == "norte":
+                os.system('cls')
+                print("Você precisa derrotar o chefão final!")
+                continue
             if move(direction):
                 os.system('cls')
                 print(f"Você se moveu para {direction}.")

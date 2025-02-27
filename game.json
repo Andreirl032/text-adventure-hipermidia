@@ -4,9 +4,6 @@
   "author": "Andrei Ramos Lopes e Marcelo Antonio Carvalho Florentino",
   "startLocationId": "1",
   "max_itens": "5",
-  "max_turns_easy": "30",
-  "max_turns_normal": "20",
-  "max_turns_hard": "10",
   "attack": 10,
   "defense": 8,
   "life": 22,
@@ -49,7 +46,7 @@
       "inactive": false,
       "up_attack": 0,
       "up_defense": 0,
-      "up_life": 5
+      "up_life": 10
     },
     {
       "id": "5",
@@ -57,9 +54,19 @@
       "description": "Uma espada escrito 'Gladius Veritas' nela. Aparentemente possui uma maldição",
       "can_take": true,
       "inactive": false,
-      "up_attack": 15,
+      "up_attack": 20,
       "up_defense": 0,
       "up_life": -10
+    },
+    {
+      "id": "6",
+      "name": "Proteção Espiritual",
+      "description": "Um manto invisível, mas que te protege de alguma forma",
+      "can_take": true,
+      "inactive": false,
+      "up_attack": 0,
+      "up_defense": 30,
+      "up_life": 10
     }
   ],
   "locations": [
@@ -162,7 +169,7 @@
           "description": "Uma espada antiga, mas ainda útil.",
           "can_take": true,
           "inactive": false,
-          "up_attack": 10,
+          "up_attack": 20,
           "up_defense": 5,
           "up_life": 0
         }
@@ -222,6 +229,60 @@
       ]
     },
     {
+      "id": "5",
+      "name": "Salão de almas tristes",
+      "description": "Uma sala gelada com muita tristeza envolvida",
+      "exits": [
+        {
+          "direction": "sul",
+          "targetLocationId": "4",
+          "description": "Retorno para a Salão das Caveiras",
+          "inactive": false
+        },
+        {
+          "direction": "oeste",
+          "targetLocationId": "6",
+          "description": "Caminho escuro e uma passagem apertada para o oeste",
+          "inactive": false
+        },
+        {
+          "direction": "leste",
+          "targetLocationId": "7",
+          "description": "Caminho escuro e uma passagem apertada para o leste",
+          "inactive": false
+        }
+      ],
+      "items": [],
+      "npcs": [],
+      "puzzles": [
+        {
+          "id": "2",
+          "description": "Um mapa que possui um lugar para encaixar algum objeto",
+          "solution": {
+            "requiredItems": ["3"],
+            "actions": "Usar a bússola para abrir o mapa"
+          },
+          "result": {
+            "active": ["Proteção Espiritual"],
+            "lose_item": [],
+            "lose_life": 0
+          }
+        }
+      ],
+      "enemies": [
+        {
+          "name": "Espíritos Depressivos",
+          "attack": 10,
+          "defense": 10,
+          "result": {
+            "active": [],
+            "lose_item": [],
+            "lose_life": 10
+          }
+        }
+      ]
+    },
+    {
       "id": "6",
       "name": "Bar da quarta parede",
       "description": "Um bar enigmático vazio com um único barman atrás da bancada",
@@ -229,7 +290,7 @@
         {
           "direction": "leste",
           "targetLocationId": "5",
-          "description": "Retornar",
+          "description": "Retornar para Salão das Almas Tristes",
           "inactive": false
         }
       ],
@@ -269,7 +330,7 @@
         {
           "direction": "oeste",
           "targetLocationId": "5",
-          "description": "Retornar",
+          "description": "Retornar para Salão das Almas Tristes",
           "inactive": false
         },
         {
@@ -304,7 +365,7 @@
           "direction": "sul",
           "targetLocationId": "7",
           "description": "Retornar para a sala do preparo",
-          "inactive": true
+          "inactive": false
         },
         {
           "direction": "norte",
@@ -318,19 +379,19 @@
       "puzzles": [],
       "enemies": [{
         "name": "Klarg, o Bugurso",
-        "attack": 12,
-        "defense": 10,
+        "attack": 40,
+        "defense": 20,
         "result": {
           "active": [],
           "lose_item": [],
-          "lose_life": 8
+          "lose_life": 20
         }
       }]
     },
     {
       "id": "9",
       "name": "O fim.",
-      "description": "...",
+      "description": "Você chegou no fim da caverna. Passou por um sufoco, mas conseguiu uma boa experiência",
       "exits": [],
       "items": [],
       "npcs": [],
